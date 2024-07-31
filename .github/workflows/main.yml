@@ -1,0 +1,9 @@
+jobs:
+  build:
+    - uses: actions/checkout@v4
+    - uses: compnerd/gha-setup-vsdevenv@main
+    - run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_CXX_COMPILER=cl.exe ..
+    - run: cmake --build build
