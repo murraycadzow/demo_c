@@ -1,0 +1,16 @@
+jobs:
+  test:
+    # Run a job for each of the specified target architectures:
+    strategy:
+      matrix:
+        arch:
+          - amd64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
+      - name: Build something requiring CL.EXE
+        run: |
+          cmake -G "NMake Makefiles" .
+          nmake
